@@ -4,7 +4,7 @@
 using namespace std;
 
 extern "C" int MODIFY_ARRAY(int*, int);
-
+extern "C" void RANDOM_FILL_ARRAY(int*, int);
 
 int main() {
 	// Установка кодировки ввода-вывода CHCP-1251, для поддержки кириллицы
@@ -32,10 +32,7 @@ int main() {
 	cin >> numberOfElements;
 	initialArray = new int[numberOfElements];
 
-	for (i = 0; i < numberOfElements; i++) {
-		cout << "[" << i + 1 << "] = ";
-		cin >> initialArray[i];
-	}
+	RANDOM_FILL_ARRAY(initialArray, numberOfElements);
 
 	cout << "Было: ";
 	for (i = 0; i < numberOfElements; i++) {
@@ -53,7 +50,7 @@ int main() {
 
 	cout << "Количество замен: " << numberOfReplaces << endl;
 
-	delete[] (initialArray);
+	free(initialArray);
 	initialArray = nullptr;
 	system("pause");
 }
